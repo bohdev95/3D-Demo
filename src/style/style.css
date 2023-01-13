@@ -1,0 +1,73 @@
+body, html{
+   padding: 0%;   
+   margin: 0%;
+   box-sizing: border-box; 
+   overflow: hidden;
+}
+canvas {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   width: 100%;
+   height: 100%;
+   z-index: -1;
+ }
+.container{
+   display: none;
+   grid-template-columns: repeat(2, 1fr);
+   width: 100%;
+   height: 100vh;
+   justify-content: space-evenly;
+
+}
+img{
+   width: 2rem;
+   height: 2rem;
+   fill: whitesmoke;
+   background-color: rgb(33, 33, 115);
+   cursor: pointer;
+   user-select: none;
+}
+.active{
+   background-color: crimson;
+}
+.ui_panel{
+    display: flex;
+    width: 100%;
+}
+.ui_container{
+   justify-self: flex-start;
+   width: 90%;
+   padding: 1rem 1rem;
+   gap: 1rem;
+   display: flex;
+   flex-direction: column;
+}
+h2{
+   font-size: 1rem;
+   float: right;
+   padding-right: 1rem;
+}
+hr{
+   border-top:1px solid black ;
+   width: 100%;
+   position: fixed;
+   z-index: 1000;
+   top: 49%;
+}
+.verticle{
+   border-top:1px solid black ;
+   width: 100%;
+   position: fixed;
+   z-index: 1000;
+   top: 49%;
+   transform: rotate(90deg);
+}
+
+
+
+
+
+
