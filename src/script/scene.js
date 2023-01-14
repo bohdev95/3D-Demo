@@ -158,9 +158,11 @@ function onClick(evt,type,cameraType) {
       }
     
     let buttons = document.getElementsByClassName("ui_buttons");
+    
     for (let i = 0; i < buttons.length; i++) {
-            if(Math.floor(evt.currentTarget.id) === Math.floor(buttons[i].id))
-               buttons[i].className = buttons[i].className.replace(" active", "");
+     
+        if(Math.floor(evt.currentTarget.name) === Math.floor(buttons[i].name))
+            buttons[i].className = buttons[i].className.replace(" active", "");
     }
     evt.currentTarget.className += " active";
   }
