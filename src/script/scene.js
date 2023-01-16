@@ -181,7 +181,7 @@ function onMouseDown(event) {
     cubeScale.copy(cube.scale);
     cameraPosition.copy(views[0].camera.position);
     if (mouse.x < 0 && mouse.y < 0)
-         cameraScreen = 1;
+        cameraScreen = 1;
     if (mouse.x > 0 && mouse.y > 0) 
         cameraScreen = 2;
     if (mouse.x > 0 && mouse.y < 0) 
@@ -199,6 +199,7 @@ function onMouseMove(event) {
         return;
     if(setFull){
         if (views[cameraScreen].actions == "move") {
+            
             switch(cameraScreen){
                     case 1:
                         cube.position.z = cubePosition.z + (mouse.x - initMouse.x)*objectDistance;
@@ -207,13 +208,20 @@ function onMouseMove(event) {
                     case 2:
                         cube.position.x = cubePosition.x + (mouse.x - initMouse.x)*objectDistance;
                         cube.position.y = cubePosition.y + (mouse.y - initMouse.y)*objectDistance;
-                        
                         break;    
                     case 3:
                         cube.position.x = cubePosition.x + (mouse.x - initMouse.x)*objectDistance;
                         cube.position.z = cubePosition.z - (mouse.y - initMouse.y)*objectDistance;
+                        
                         break;    
             }
+
+            let camera = views[1].camera;
+            camera.lookAt(cube.position);
+            camera = views[2].camera;
+            camera.lookAt(cube.position);
+            camera = views[3].camera;
+            camera.lookAt(cube.position);
         }
         if (views[cameraScreen].actions == "scale") {
             switch(cameraScreen){
@@ -248,8 +256,9 @@ function onMouseMove(event) {
             }
         }
         if (views[cameraScreen].actions == "camera" && cameraScreen > 0) {
-        const camera = views[0].camera;
-        switch(cameraScreen){
+
+            const camera = views[0].camera;
+            switch(cameraScreen){
                 case 1:
                     camera.position.z = cameraPosition.z - (mouse.x - initMouse.x) *objectDistance;
                     camera.position.y = cameraPosition.y + (mouse.y - initMouse.y) *objectDistance;
@@ -262,28 +271,28 @@ function onMouseMove(event) {
                     camera.position.x = cameraPosition.x + (mouse.x - initMouse.x) *objectDistance;
                     camera.position.z = cameraPosition.z - (mouse.y - initMouse.y) *objectDistance;
                     break;
-         }
-      }
+            }
+        }
     }
   }
-  function onMouseUp(event) {
-     event.preventDefault();
+function onMouseUp(event) {
+    event.preventDefault();
 
-     if (!setFull) {
+    if (!setFull) {
         raycaster.setFromCamera(mouse, views[0].camera);
         if (raycaster.intersectObject(cube).length > 0) {
             showFullView(true);
         }
-      }
+    }
 
-     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-     cameraScreen = -1;
-     
-  }
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    cameraScreen = -1;
+    
+}
 
-  const showFullView = (_setFull) => {
+const showFullView = (_setFull) => {
     setFull = _setFull;
     const gridcontainer = document.getElementById("container");
     gridcontainer.style.display = _setFull ? "grid" : "none";
-  };
+};
